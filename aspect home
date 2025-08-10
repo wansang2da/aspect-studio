@@ -1,0 +1,282 @@
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Sparkles, Clapperboard, MessageSquare, ArrowRight, Instagram,
+  MessageCircle, ChevronRight, Quote, X
+} from "lucide-react";
+
+const KAKAO_URL = "https://open.kakao.com/o/sThqpM4g";
+const IG_URL = "https://instagram.com/as_pect_studio";
+
+type Program = { title: string; date: string; desc: string; tag: string; detail: string };
+
+export default function AspectStudioSite() {
+  const programs: Program[] = [
+    {
+      title: "〈장면 속으로〉",
+      date: "매주 토 19:00 / 120분",
+      desc: "영화·드라마 2인 장면 완성",
+      tag: "Scene Work",
+      detail:
+        "실제 작품 대사 기반으로 목표·수단을 설계하고, 리허설→카메라 적용→피드백까지 한 흐름으로 진행합니다.",
+    },
+    {
+      title: "〈말이 없는 순간〉",
+      date: "격주 금 19:00 / 120분",
+      desc: "비언어 행동·침묵 집중",
+      tag: "Silence & Action",
+      detail:
+        "시선·거리·호흡으로 대사 사이를 채우는 훈련. 관계의 긴장을 유지하며 행동의 사실성을 다집니다.",
+    },
+    {
+      title: "〈같은 말, 다른 전략〉",
+      date: "월 20:00 / 120분",
+      desc: "전략 변주·선택 훈련",
+      tag: "Strategy",
+      detail:
+        "같은 대사를 설득·회유·압박 등 다양한 전략으로 변주하여 리듬과 템포, 선택의 근거를 강화합니다.",
+    },
+  ];
+
+  const [open, setOpen] = useState<Program | null>(null);
+
+  return (
+    <div className="min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white">
+      {/* NAV */}
+      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-neutral-100">
+        <nav className="mx-auto max-w-6xl px-4 lg:px-6 h-16 flex items-center justify-between">
+          <a href="#home" className="font-semibold tracking-tight text-xl">ASPECT STUDIO</a>
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#philosophy" className="hover:opacity-70">철학</a>
+            <a href="#curriculum" className="hover:opacity-70">커리큘럼</a>
+            <a href="#programs" className="hover:opacity-70">클래스</a>
+            <a href="#instructor" className="hover:opacity-70">강사 소개</a>
+            <a href="#contact" className="hover:opacity-70">문의</a>
+            {/* 예약하기 고정 버튼 */}
+            <Button asChild className="rounded-2xl px-4 py-2 h-9">
+              <a href={KAKAO_URL} target="_blank" rel="noreferrer">예약하기</a>
+            </Button>
+          </div>
+        </nav>
+      </header>
+
+      {/* HERO */}
+      <section id="home" className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(75%_60%_at_50%_-10%,#111_0%,transparent_70%)] opacity-[0.03]" />
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 py-20 md:py-28">
+          <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.7}}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-600 shadow-sm">
+              <Sparkles className="h-3.5 w-3.5" />
+              배우 훈련 · 장면 중심 · 현대적 접근
+            </div>
+            <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-[-0.02em] leading-[1.05]">
+              살아 있는 순간을 만드는 <span className="underline decoration-neutral-200">연기 스튜디오</span>
+            </h1>
+            <p className="mt-5 max-w-2xl text-neutral-600">
+              ASPECT STUDIO는 텍스트와 즉흥, 카메라/무대 연기를 넘나들며
+              배우의 감정·의도·행동을 정교하게 연결합니다. 깔끔하고 모던한 환경에서
+              당신만의 장면 언어를 설계하세요.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button asChild className="rounded-2xl h-11 px-5">
+                <a href="#contact">상담 문의하기</a>
+              </Button>
+              <a href="#curriculum" className="group inline-flex items-center gap-1 text-sm text-neutral-700 hover:text-black">
+                대표 커리큘럼 보기 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PHILOSOPHY */}
+      <section id="philosophy" className="py-16 md:py-24 bg-neutral-50">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <div className="grid md:grid-cols-5 gap-8 items-start">
+            <div className="md:col-span-2">
+              <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">연기의 철학</h2>
+              <p className="mt-4 text-neutral-600">
+                우리는 감정을 ‘만드는’ 대신, <b>행동과 관계</b>에서 자연스레 <b>발화</b>되도록 설계합니다.
+                배우는 상대의 말과 환경에 <b>정직하게 반응</b>하며, 순간의 진실을 장면으로 구체화합니다.
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-neutral-700">
+                <li>• 목적과 수단의 일치 — “왜 지금 이 말을 하는가”</li>
+                <li>• 리듬과 템포 — 말과 침묵 사이의 호흡 설계</li>
+                <li>• 카메라/무대 컨텍스트에 맞춘 행동의 사실성</li>
+              </ul>
+            </div>
+            <div className="md:col-span-3">
+              <Card className="rounded-3xl border-neutral-200">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2"><Quote className="h-5 w-5"/>철학 한 문장</CardTitle>
+                </CardHeader>
+                <CardContent className="text-neutral-700 leading-relaxed">
+                  말 이전의 충동, 말 이후의 침묵 — 그 사이의 모든 것을 배우의 선택으로 채운다.
+                </CardContent>
+              </Card>
+              <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                {[
+                  {title:"순간에 반응", desc:"상대·공간·오브제에 정직하게 반응"},
+                  {title:"행동의 사실성", desc:"보이는 행동으로 의도를 검증"},
+                  {title:"장면의 완성", desc:"분석→리허설→촬영까지 일관된 설계"},
+                ].map((it, i)=> (
+                  <Card key={i} className="rounded-2xl border-neutral-200">
+                    <CardHeader className="pb-2"><CardTitle className="text-base">{it.title}</CardTitle></CardHeader>
+                    <CardContent className="text-sm text-neutral-600">{it.desc}</CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CURRICULUM */}
+      <section id="curriculum" className="py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">대표 커리큘럼</h2>
+          <p className="mt-3 text-neutral-600 max-w-2xl">운영 중인 클래스들의 제목과 간단한 소개를 확인하세요.</p>
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            <Card className="rounded-3xl border-neutral-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Clapperboard className="h-5 w-5"/> 〈하나의 장면〉</CardTitle>
+              </CardHeader>
+              <CardContent className="text-neutral-700 text-sm">
+                실제 영화·드라마 대사로 2인 장면을 완성합니다. 분석–리허설–촬영을 통해 배우의 선택을 구조화합니다.
+              </CardContent>
+            </Card>
+            <Card className="rounded-3xl border-neutral-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5"/> 〈말이 없는 순간〉</CardTitle>
+              </CardHeader>
+              <CardContent className="text-neutral-700 text-sm">
+                대사 사이의 여백을 시선·거리·호흡으로 채워 관계의 긴장을 유지합니다. 비언어 행동의 정밀도를 높입니다.
+              </CardContent>
+            </Card>
+            <Card className="rounded-3xl border-neutral-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2"><MessageSquare className="h-5 w-5"/> 〈같은 말, 다른 전략〉</CardTitle>
+              </CardHeader>
+              <CardContent className="text-neutral-700 text-sm">
+                같은 대사를 다양한 전략으로 변주해 설득력과 리듬을 확장합니다. 목적–수단의 일치를 훈련합니다.
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* PROGRAMS + DETAIL MODAL */}
+      <section id="programs" className="py-16 md:py-24 bg-neutral-50">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <div className="flex items-end justify-between">
+            <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">진행 중인 클래스</h2>
+            <a href="#contact" className="text-sm text-neutral-700 hover:text-black inline-flex items-center gap-1">문의하기 <ChevronRight className="h-4 w-4"/></a>
+          </div>
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            {programs.map((c, i)=> (
+              <Card key={i} className="rounded-3xl border-neutral-200">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg">{c.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-neutral-700 text-sm">
+                  <div className="text-neutral-500">{c.date}</div>
+                  <div className="mt-2">{c.desc}</div>
+                  <div className="mt-3 flex items-center gap-2">
+                    <div className="inline-flex items-center rounded-full bg-black text-white text-xs px-2.5 py-1">{c.tag}</div>
+                    <button onClick={()=>setOpen(c)} className="text-xs underline underline-offset-2 hover:text-black">자세히 보기</button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Detail Modal */}
+        {open && (
+          <div className="fixed inset-0 z-[60] bg-black/50 flex items-center justify-center p-4" onClick={()=>setOpen(null)}>
+            <div className="max-w-md w-full rounded-3xl bg-white border border-neutral-200 p-6 relative" onClick={(e)=>e.stopPropagation()}>
+              <button className="absolute right-4 top-4 text-neutral-500 hover:text-black" onClick={()=>setOpen(null)} aria-label="닫기">
+                <X className="h-5 w-5" />
+              </button>
+              <h3 className="text-xl font-semibold">{open.title}</h3>
+              <p className="mt-2 text-sm text-neutral-500">{open.date}</p>
+              <p className="mt-4 text-neutral-700">{open.detail}</p>
+              <div className="mt-6">
+                <Button asChild className="rounded-2xl h-11 px-5"><a href={KAKAO_URL} target="_blank" rel="noreferrer">예약하기</a></Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* INSTRUCTOR */}
+      <section id="instructor" className="py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">강사 소개</h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="aspect-[4/5] w-full bg-neutral-100 rounded-3xl overflow-hidden border border-neutral-200">
+                {/* 강사 사진을 public/assets/액팅 임상완.jpg 로 저장 */}
+                <img src="/assets/액팅 임상완.jpg" alt="Acting coach 임상완" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold">Acting coach 임상완</h3>
+              <p className="mt-3 text-neutral-600">“상상의 상황 속 진질된 행동”</p>
+              <p className="mt-4 text-neutral-600">
+                장면 중심의 실천적 훈련을 통해 배우의 감정·의도·행동을 정밀하게 연결하는 코칭을 진행합니다.
+              </p>
+              <div className="mt-6">
+                <Button asChild className="rounded-2xl h-11 px-5">
+                  <a href={KAKAO_URL} target="_blank" rel="noreferrer">예약하기</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">문의하기</h2>
+              <p className="mt-4 text-neutral-600">수업 일정, 난이도, 커리큘럼 상세가 궁금하신가요? 편한 채널로 메시지를 보내주세요. 빠르게 답변드릴게요.</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild variant="default" className="rounded-2xl h-11 px-5">
+                  <a href={IG_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2"><Instagram className="h-4 w-4"/> 인스타그램 DM</a>
+                </Button>
+                <Button asChild variant="secondary" className="rounded-2xl h-11 px-5">
+                  <a href={KAKAO_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2"><MessageCircle className="h-4 w-4"/> 카카오톡 문의</a>
+                </Button>
+              </div>
+            </div>
+            <div>
+              <Card className="rounded-3xl border-neutral-200">
+                <CardHeader className="pb-2"><CardTitle>스튜디오 정보</CardTitle></CardHeader>
+                <CardContent className="text-sm text-neutral-700 space-y-2">
+                  <div className="flex justify-between"><span className="text-neutral-500">위치</span><span>경기 고양시 일산서구 — 일산 후곡마을</span></div>
+                  <div className="flex justify-between"><span className="text-neutral-500">운영</span><span>ASPECT STUDIO 임상완</span></div>
+                  <div className="flex justify-between"><span className="text-neutral-500">수업</span><span>작은 정원 인원, 집중 피드백</span></div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-neutral-100">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 h-20 flex items-center justify-between text-sm text-neutral-500">
+          <span>© {new Date().getFullYear()} ASPECT STUDIO</span>
+          <a href="#home" className="hover:text-black inline-flex items-center gap-1">맨 위로 <ArrowRight className="h-3.5 w-3.5 rotate-[-90deg]" /></a>
+        </div>
+      </footer>
+    </div>
+  );
+}
